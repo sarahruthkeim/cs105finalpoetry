@@ -13,5 +13,10 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
+    file_handle = open('cmudict.txt', 'r')
+    num_lines = 0
+    for line in file_handle:
+        num_lines += 1
+    print(num_lines)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
