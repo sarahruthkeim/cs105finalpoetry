@@ -1,23 +1,26 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-# hello - Justin
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from rhyme import two_words_rhyme
 
 
-# Press the green button in the gutter to run the script.
+def user_interface():
+    """
+    This function interacts with you user
+    """
+    selection = int(input("Choose a function to use (1: Two words rhyming, 2:..."))
+    # Two words rhyming function
+    if selection == 1:
+        word1 = str(input("Enter 1st word:"))
+        word2 = str(input("Enter 2nd word:"))
+        two_words_rhyme(word1, word2)
+    if selection == 2:
+        user_poem_file = open("user_poem.txt", "w")
+        num_of_lines = int(input("How many lines does your poem have: "))
+        for current_line in range(num_of_lines):
+            line = input(f"Write line {current_line + 1}: ")
+            user_poem_file.write(line + "\n")
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-    file_handle = open('cmudict.txt', 'r')
-    num_lines = 0
-    for line in file_handle:
-        num_lines += 1
-    print(num_lines)
+    user_interface()
     
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
