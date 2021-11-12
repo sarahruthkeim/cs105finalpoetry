@@ -24,4 +24,3 @@ def syllable_counter(words:str)-> int:
             syllablecount+=1
     return syllablecount
 
-
