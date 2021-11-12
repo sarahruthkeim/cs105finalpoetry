@@ -10,3 +10,4 @@ def word_character_list():
         word_list.append(broken_word_list)
     return word_list
 
+
