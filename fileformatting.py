@@ -9,5 +9,3 @@ def word_character_list():
         broken_word_list = modified_line.split(" ")
         word_list.append(broken_word_list)
     return word_list
-
-
