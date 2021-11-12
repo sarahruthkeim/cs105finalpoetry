@@ -18,5 +18,6 @@ if __name__ == '__main__':
     for line in file_handle:
         num_lines += 1
     print(num_lines)
+    
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
