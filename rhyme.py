@@ -1,7 +1,6 @@
 from fileformatting import word_character_list
 
 
-
 def two_words_rhyme(word1: str, word2: str, listofwords: list) -> str:
     lastvowel1 = ""
     lastvowel2 = ""
@@ -29,4 +28,4 @@ def find_last_vowel(brokenword: list) -> str:
 
 
 
-listofwords = word_character_list()
+
