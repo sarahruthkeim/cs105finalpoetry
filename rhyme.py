@@ -87,7 +87,7 @@ def perfect_vowel(word1: str, word2: str) -> bool:
                         current_word1_syllable = ""
                         current_word2_syllable = ""
         return True
-##
+###
 
 print(perfect_vowel("YELLOW", "AMERICA"))
 
