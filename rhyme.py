@@ -10,8 +10,8 @@ def two_words_rhyme(word1: str, word2: str) -> bool:
     :return: a boolean, True if word1 and word2 rhyme, False if they do not
     """
     if isinstance(word1, str) and isinstance(word2, str) and word1 != "" and word2 != "":  # preconditions (ensures both words are not empty and that they are both strs)
-        lastvowel1 = ""  # instantiates variable that will hold the last vowel occuring in word1
-        lastvowel2 = ""  # instantiates variable that will hold the last vowel occuring in word2
+        lastvowel1 = ""  # instantiates variable that will hold the last vowel occurring in word1
+        lastvowel2 = ""  # instantiates variable that will hold the last vowel occurring in word2
         for element in config.listofwords:  # goes through every list in
             if element[0] == word1:  # checks if the first element in the list is word1
                 lastvowel1 = find_last_vowel(element)  # calls find_last_vowel for word1, which determines the last occuring vowel in the word, and sets that to lastvowel1
