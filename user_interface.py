@@ -1,5 +1,5 @@
-
-#import -
+from rhyme import two_words_rhyme
+from config import listofwords
 
 def user_interface():
     selection=int(input("Choose a function to use (1: Two words rhyming, 2:..."))
@@ -7,8 +7,8 @@ def user_interface():
     if selection==1:
         word1=str(input("Enter 1st word:"))
         word2=str(input("Enter 2nd word:"))
-        #importedfunction(word1, word2)
+        two_words_rhyme(word1.upper(), word2.upper())
 
-    #if selection==2:
-
+    #Perfect rhymes function
+    if selection==2:
 
