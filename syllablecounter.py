@@ -20,7 +20,7 @@ def syllable_counter(words:str)-> int:
             syllablecount-=1
         if words[i]=="e" and words[i-1] not in vowels and words[i-2] in vowels:
             syllablecount-=1
-        if words[i]=="y" and words[i-1] not in vowels and words[i+1] not in vowels
+        if words[i]=="y" and words[i-1] not in vowels and words[i+1] not in vowels:
             syllablecount+=1
     return syllablecount
 
