@@ -57,35 +57,37 @@ def convert_word(word: str) -> list:
     else:
         return brokenword
 
-print(convert_word("TEST"))
+print(convert_word("HELLO"))
+print(convert_word("YELLOW"))
 
 def perfect_vowel(word1: str, word2: str) -> bool:
-    vowels = ["AA", "AE", "AH", "AO", "AW", "AY", "EH", "ER", "EY", "IH", "IY", "UH", "UW"]
+    vowels = ["AA", "AE", "AH", "AO", "AW", "AY", "EH", "ER", "EY", "IH", "IY", "UH", "UW", "OW"]
     broken_word1 = convert_word(word1)
     broken_word2 = convert_word(word2)
     if broken_word1 == [0] or broken_word2 == [0]:
         raise Exception
     else:
-        if len(broken_word1) > len(broken_word2):
-            current_word1_syllable: str = ""
-            current_word2_syllable: str = ""
-            for syllable_index in range(1, len(convert_word(word2))):
-                while current_word1_syllable == "" or current_word2_syllable == "":
-                    if broken_word1[syllable_index][0:1] in vowels:
-                        current_word1_syllable = broken_word1[syllable_index][0:1]
-                        print(current_word1_syllable)
-                    if word2[syllable_index][0:1] in vowels:
-                        current_word2_syllable = broken_word2[syllable_index][0:1]
-                        print(current_word2_syllable)
-                    if current_word1_syllable != "" and current_word2_syllable != "":
-                        if current_word1_syllable != current_word2_syllable:
-                            return False
-                        else:
-                            current_word1_syllable = ""
-                            current_word2_syllable = ""
-                            break
-            return True
+        current_word1_vowel: str = ""
+        current_word2_vowel: str = ""
+        while current_word1_vowel == "" or current_word2_vowel == "":
+            longest_word = max(len(broken_word1), len(broken_word2))
+            for syllable_index in range(1, longest_word):
+                current_word1_syllable = broken_word1[syllable_index][0:2]
+                current_word2_syllable = broken_word2[syllable_index][0:2]
+                if current_word1_syllable in vowels:
+                    current_word1_vowel = current_word1_syllable
+                    print(current_word1_vowel)
+                if current_word2_syllable in vowels:
+                    current_word2_vowel = current_word2_syllable
+                    print(current_word2_vowel)
+                if current_word1_vowel != "" and current_word2_vowel != "":
+                    if current_word1_vowel != current_word2_vowel:
+                        return False
+                    else:
+                        current_word1_syllable = ""
+                        current_word2_syllable = ""
+        return True
 #
 
-print(perfect_vowel("SERENDIPITY", "HELLO"))
+print(perfect_vowel("YELLOW", "AMERICA"))
 
