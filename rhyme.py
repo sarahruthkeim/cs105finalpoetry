@@ -1,10 +1,10 @@
-from fileformatting import word_character_list
+import config
 
 
-def two_words_rhyme(word1: str, word2: str, listofwords: list) -> str:
+def two_words_rhyme(word1: str, word2: str) -> str:
     lastvowel1 = ""
     lastvowel2 = ""
-    for element in listofwords:
+    for element in config.listofwords:
         if element[0] == word1:
             lastvowel1 = find_last_vowel(element)
         elif element[0] == word2:
