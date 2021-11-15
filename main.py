@@ -21,11 +21,12 @@ def user_interface():
             user_poem_file.write(line + "\n")  # writes the line the user just wrote to the user_poem_file
 
     if selection == 3:
-        user_poem_file = open("user_poem.txt","w")
+        user_poem_file = open("user_poem.txt","r")
         num_of_lines = int(input("How many lines does your poem have: "))
         for current_line in range(num_of_lines):
             total_syl=0
             for i in current_line:
+
 
 
 if __name__ == '__main__':
