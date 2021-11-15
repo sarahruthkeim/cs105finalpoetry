@@ -1,3 +1,5 @@
+"""
+
 def word_character_list():
     file_handle = open('cmudict.txt', 'r')
     list_of_lists = []
@@ -49,3 +51,5 @@ def perfect_vowel(word1: str, word2: str) -> bool:
                             current_word1_syllable = ""
                             current_word2_syllable = ""
             return True
+"""
+
