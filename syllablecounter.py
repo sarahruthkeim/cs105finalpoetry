@@ -16,11 +16,6 @@ def syllable_counter(words:str)-> int:
     if words[0:2]=='Mc':
         syllablecount+=1
 
-    #Accounting for all words with 3 or less letters
-    if len(words) <= 3:
-        syllablecount=1
-        return syllablecount
-
     #For loop for all the instances of syllables for all letters after the first letter in the word
     for i in range(1, len(words)-1):
 
@@ -40,3 +35,8 @@ def syllable_counter(words:str)-> int:
     print(syllablecount)
 
 syllable_counter('sparkle')
+syllable_counter('submarine')
+syllable_counter('ate')
+syllable_counter('crucial')
+syllable_counter('preach')
+syllable_counter('preacher')
