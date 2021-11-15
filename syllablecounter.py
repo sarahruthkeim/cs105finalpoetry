@@ -1,5 +1,3 @@
-
-
 def syllable_counter(words:str)-> int:
     """
     This function receives a word and counts the syllables in that word

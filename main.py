@@ -20,6 +20,13 @@ def user_interface():
             line = input(f"Write line {current_line + 1}: ")  # asks the user to write whatever the current line of the poem is and assigns it to line
             user_poem_file.write(line + "\n")  # writes the line the user just wrote to the user_poem_file
 
+    if selection == 3:
+        user_poem_file = open("user_poem.txt","w")
+        num_of_lines = int(input("How many lines does your poem have: "))
+        for current_line in range(num_of_lines):
+            total_syl=0
+            for i in current_line:
+
 
 if __name__ == '__main__':
     user_interface()  # calls user_interface() function
