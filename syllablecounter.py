@@ -46,7 +46,7 @@ def syllable_counter(words:str)-> int:
                     syllablecount+=1
             print(syllablecount)
 
-# ...
+# .......
 syllable_counter('sparkle')
 syllable_counter('submarine')
 syllable_counter('ate')
