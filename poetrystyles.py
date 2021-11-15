@@ -1,10 +1,10 @@
 from rhyme import two_words_rhyme
 from syllablecounter import syllable_counter
 
-num_of_lines = 0
-user_poem_file = open("user_poem.txt", "r")
-for line in user_poem_file:
-    num_of_lines += 1
+num_of_lines = 0  #
+user_poem_file = open("user_poem.txt", "r")  #
+for line in user_poem_file:  #
+    num_of_lines += 1  #
 
 def haiku() -> bool:
     """

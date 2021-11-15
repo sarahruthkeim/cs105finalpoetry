@@ -12,7 +12,7 @@ def user_interface():
     if selection == 1:
         word1 = str(input("Enter 1st word:"))
         word2 = str(input("Enter 2nd word:"))
-        two_words_rhyme(word1, word2)  # calls the two_words_rhyme function with the two words the user gives as input which will return whether or not the two words rhyme
+        print(two_words_rhyme(word1, word2))  # calls the two_words_rhyme function with the two words the user gives as input which will return whether or not the two words rhyme
     if selection == 2:
         user_poem_file = open("user_poem.txt", "w")  # opens and writes a text file called user_poem.txt under the variable name user_poem_file
         num_of_lines = int(input("How many lines does your poem have: "))  # asks the user how many lines there are in their poem and assigns their answer to num_of_lines

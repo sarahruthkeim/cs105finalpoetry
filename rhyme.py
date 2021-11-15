@@ -45,54 +45,48 @@ def find_last_vowel(brokenword: list) -> str:
 
 
 def convert_word(word: str) -> list:
-    """
-
-    :param word: string provided by user, must be in the list of words
-    :return: This function converts words into a list of vowels (without stresses)
-
-    >>> convert_word("HELLO")
-    ['AH', 'OW']
-    """
-    vowels = ["AA", "AE", "AH", "AO", "AW", "AY", "EH", "ER", "EY", "IH", "IY", "UH", "UW", "OW"]
     brokenword: list = []
-    tracking = 0  # tracking variable checks to see if a word in the dictionary has been found
+    tracking = 0
     for index in range(len(config.listofwords)):
         if config.listofwords[index][0] == word:
             tracking += 1
-            brokenword = config.listofwords[index]  # this returns the "broken word" (word seperated into syllables)
-            brokenvowel = []  # brokenvowel will return a list of all the vowels in a word
-            for syllable in brokenword:
-                if syllable[0:2] in vowels:
-                    brokenvowel += [syllable[0:2]]
-            return brokenvowel
-    if tracking == 0:  # if no word is found, tracking is never updated, thus violating the precondition
-        raise Exception("Word not in dictionary")
+            brokenword = config.listofwords[index]
+    if tracking == 0:
+        return [0]
+    else:
+        return brokenword
 
-print(convert_word("MELLOW"))
 print(convert_word("HELLO"))
+print(convert_word("YELLOW"))
 
-def perfect_rhyme(word1: str, word2: str) -> bool:
+def perfect_vowel(word1: str, word2: str) -> bool:
+    vowels = ["AA", "AE", "AH", "AO", "AW", "AY", "EH", "ER", "EY", "IH", "IY", "UH", "UW", "OW"]
     broken_word1 = convert_word(word1)
     broken_word2 = convert_word(word2)
-    if len(broken_word1) != len(broken_word2):  # words with a different amount of vowel sounds can never be perfect
-        # rhymes. Eliminating these words right away prevents any potential index errors
-        return False
+    if broken_word1 == [0] or broken_word2 == [0]:
+        raise Exception
     else:
-        for syllable_index in range(len(broken_word1)):
-            if broken_word1[syllable_index] != broken_word2[syllable_index]:
-                return False
-        return True  # if the two words reach the end of the for loop, all of their syllables must be the same,
-        # therefore, True is returned
-
+        current_word1_vowel: str = ""
+        current_word2_vowel: str = ""
+        while current_word1_vowel == "" or current_word2_vowel == "":
+            longest_word = max(len(broken_word1), len(broken_word2))
+            for syllable_index in range(1, longest_word):
+                current_word1_syllable = broken_word1[syllable_index][0:2]
+                current_word2_syllable = broken_word2[syllable_index][0:2]
+                if current_word1_syllable in vowels:
+                    current_word1_vowel = current_word1_syllable
+                    print(current_word1_vowel)
+                if current_word2_syllable in vowels:
+                    current_word2_vowel = current_word2_syllable
+                    print(current_word2_vowel)
+                if current_word1_vowel != "" and current_word2_vowel != "":
+                    if current_word1_vowel != current_word2_vowel:
+                        return False
+                    else:
+                        current_word1_syllable = ""
+                        current_word2_syllable = ""
+        return True
 ###
 
-print(perfect_rhyme("YELLOW", "MELLOW"))
-print(perfect_rhyme("GAZE", "GAZING"))
+print(perfect_vowel("YELLOW", "AMERICA"))
 
-print(convert_word("ANTELOPE"))
-print(convert_word("CANTALOUPE"))
-
-print(convert_word("SPARKLE"))
-print(convert_word("ALMOND"))
-
-print(perfect_rhyme("SPARKLE", "ALMOND"))
