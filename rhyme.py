@@ -39,7 +39,9 @@ def find_last_vowel(brokenword: list) -> str:
         for index in reversed(brokenword):  # goes through every element in brokenword list starting from the last element
             if len(index) >= 3:  # checks if the length of the current element, a phonetic sound, is greater than or equal to 3
                 if index[0:2] in config.vowels:  # checks if the first two chars in current element is in vowels (first two chars because some elements have numbers indiciating syllable stress, eliminates this problem)
-                    return index[0:2]  # returns the fist two chars of current element if it appears in vowels
+                    vowel_to_end = index[0:2]  # removes the number that indicates syllable stress from the last vowel in brokenword
+                    vowel_to_end += "".join(brokenword[brokenword.index(index) + 1:])  # assigns the last vowel in brokenwords and all following consonants to vowel_to_end as a string with no spaces
+                    return vowel_to_end  # returns the last vowel and subsequent consonants as a string with no spaces
     else:
         raise Exception("Error. Please check that variable brokenword is of the correct type, list.")  # raises an exception and prints an error message if the preconditions are not met
 
