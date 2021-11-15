@@ -36,10 +36,9 @@ def find_last_vowel(brokenword: list) -> str:
     :return: a str that is the last vowel sound in the word
     """
     if isinstance(brokenword, list):  # preconditions (ensures brokenword is a list)
-        vowels = ["AA", "AE", "AH", "AO", "AW", "AY", "EH", "ER", "EY", "IH", "IY", "UH", "UW"]  # a list of all possible vowels
         for index in reversed(brokenword):  # goes through every element in brokenword list starting from the last element
             if len(index) >= 3:  # checks if the length of the current element, a phonetic sound, is greater than or equal to 3
-                if index[0:2] in vowels:  # checks if the first two chars in current element is in vowels (first two chars because some elements have numbers indiciating syllable stress, eliminates this problem)
+                if index[0:2] in config.vowels:  # checks if the first two chars in current element is in vowels (first two chars because some elements have numbers indiciating syllable stress, eliminates this problem)
                     return index[0:2]  # returns the fist two chars of current element if it appears in vowels
     else:
         raise Exception("Error. Please check that variable brokenword is of the correct type, list.")  # raises an exception and prints an error message if the preconditions are not met
