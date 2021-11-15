@@ -50,3 +50,9 @@ def limerick() -> bool:
                     return True  # the correct rhyming scheme of AABBA has been met, returns True
     else:
         raise Exception("Error. Poem should have three lines.")  # raises an exception if the preconditions are not met
+
+
+
+
+
+
