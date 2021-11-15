@@ -18,7 +18,7 @@ def two_words_rhyme(word1: str, word2: str) -> bool:
             elif element[0] == word2:  # checks if the first element in the list is word2
                 lastvowel2 = find_last_vowel(element)  # calls find_last_vowel for word2, which determines the last occuring vowel in the word, and sets that to lastvowel2
             if lastvowel1 != "" and lastvowel2 != "":  # if the last vowel in both words have been found, breaks from the loop
-                break
+                break  # breaks from the loop as soon as lastvowel1 and lastvowel2 are not empty strings
         if lastvowel1 == lastvowel2:  # checks if the last vowel in both words is the same
             return True  # if the vowels are the same, the words rhyme, return True
         else:
