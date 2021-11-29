@@ -1,6 +1,6 @@
 from rhyme import two_words_rhyme
 from syllablecounter import syllable_counter
-from poemformatting import remove_punctuation
+from poemformatting import *
 
 num_of_lines = 0  #
 user_poem_file = open("user_poem.txt", "r")  #
@@ -60,7 +60,17 @@ def limerick() -> bool:
         raise Exception("Error. Poem should have three lines.")  # raises an exception if the preconditions are not met
 
 
-
+def iambic_pentameter() -> bool:
+    for line in user_poem_file:
+        formatted_line = remove_punctuation(line[:-1])
+        total_syllables = 0
+        syllable_mask = ''
+        for word in formatted_line:
+            syllable_mask += identify_word_stress(word)
+            total_syllables += syllablecounter(word)
+        if total_syllables != 10 or syllable_mask != '0101010101':  # 0101010101 = unstressed, stressed, unstressed, stressed, ...
+            return False
+    return True
 
 
 

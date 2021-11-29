@@ -30,6 +30,7 @@ def remove_punctuation(current_line) -> list:
     ordered_word_list = current_line.split(" ")
     return ordered_word_list
 
+
 def identify_word_stress(current_word) -> str:
     """
 
@@ -45,18 +46,3 @@ def identify_word_stress(current_word) -> str:
             else:  # stress is 1, 2, or 3 (stressed)
                 syllable_string += "1"
     return syllable_string
-
-print(identify_word_stress('HELLO'))
-print(identify_word_stress('MADAGASCAR'))
-
-def iambic_pentameter() -> bool:
-    for line in user_poem_file:
-        formatted_line = remove_punctuation(line[:-1])
-        total_syllables = 0
-        syllable_mask = ''
-        for word in formatted_line:
-            syllable_mask += identify_word_stress(word)
-            total_syllables += syllablecounter(word)
-        if total_syllables != 10 or syllable_mask != '0101010101':  # 0101010101 = unstressed, stressed, unstressed, stressed, ...
-            return False
-    return True
