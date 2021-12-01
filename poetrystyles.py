@@ -33,7 +33,7 @@ def haiku() -> bool:
         user_poem_file.close()
         return True  # returns True because all the lines met the correct syllable counts
     else:
-        raise Exception("Error. Poem should have three lines.")  # raises an exception if the preconditions are not met
+        return False
 
 
 def limerick() -> bool:
@@ -57,7 +57,7 @@ def limerick() -> bool:
         user_poem_file.close()
         return False
     else:
-        raise Exception("Error. Poem should have three lines.")  # raises an exception if the preconditions are not met
+        return False
 
 
 def iambic_pentameter() -> bool:
