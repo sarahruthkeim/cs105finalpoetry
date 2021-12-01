@@ -48,11 +48,20 @@ def find_last_vowel(broken_word: list) -> str:
 
 def rhyme_suggestions(word_to_rhyme: str) -> str:
     """
+    This function takes a word and returns a list of possible words that rhyme with the given word.
 
-    :param word_to_rhyme:
+    :param word_to_rhyme: a str, word that will be compared to other words to see if they rhyme
     :return:
     """
+    assert(word_to_rhyme, str) and (" " not in word_to_rhyme), "Make sure that the word is a string and is only one word!"  # preconditions
+    possible_rhymes = []
+    for line in config.listofwords:
+        print(line[0])
+        if two_words_rhyme(word_to_rhyme, line[0]):
+            possible_rhymes.append(line[0])
+    return "\n".join(possible_rhymes)
 
+#print(rhyme_suggestions("cat"))
 
 def convert_word(word: str) -> list:
     broken_word: list = []
@@ -66,8 +75,8 @@ def convert_word(word: str) -> list:
     else:
         return broken_word
 
-print(convert_word("HELLO"))
-print(convert_word("YELLOW"))
+#print(convert_word("HELLO"))
+#print(convert_word("YELLOW"))
 
 def perfect_vowel(word1: str, word2: str) -> bool:
     vowels = ["AA", "AE", "AH", "AO", "AW", "AY", "EH", "ER", "EY", "IH", "IY", "UH", "UW", "OW"]
@@ -76,5 +85,26 @@ def perfect_vowel(word1: str, word2: str) -> bool:
 
 ###
 
-print(perfect_vowel("YELLOW", "AMERICA"))
+#print(perfect_vowel("YELLOW", "AMERICA"))
+
+
+def list_of_rhymes() -> None:
+    file_handle = open('list_of_rhymes.txt', 'w')
+    rhymes = []
+    for element in config.listofwords[0:500]:
+        if len(rhymes) == 0:
+            rhymes.append([element[0]])
+        else:
+            for rhyme_list in rhymes:
+                if two_words_rhyme(element[0], rhyme_list[0]):
+                    rhyme_list.append(element[0])
+                    break
+            rhymes.append([element[0]])
+    for list in rhymes:
+        for element in list:
+            file_handle.write(element + ", ")
+        file_handle.write("\n")
+    file_handle.close()
+
+
 
