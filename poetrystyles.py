@@ -61,35 +61,67 @@ def limerick() -> bool:
 
 
 def iambic_pentameter() -> bool:
-    wrong_syllables: int = 0
+    """
+
+    :return: This function looks at user_poem.txt and checks to see if it is iambic pentameter. There are two parts to
+    Iambic Pentameter. The "Iambic" part specifies that syllables must alternate as unstressed and stressed (this means
+    how much emphasis is placed on each syllable when read aloud). The "Pentameter" part specifies tha there must be
+    10 syllables per line. If the function identifies a line that doesn't have 10 syllables, it returns False. The
+    function is slightly more flexible for the Iambic requirement. It records how many syllables do not fit the correct
+    scheme, and if this amount gets too high it returns False. If neither of these conditions happen, the function
+    returns True.
+
+    Some problems with this function: Shakespeare is the most well known user of this poetry style, but this function
+    cannot analyze his poetry since he uses antiquated English. Many of the words he uses are not in the dictionary.
+
+    Also, poets frequenetly bend the rules and force words to fit the Iambic pattern through the way they are read.
+    This function pretty much always returns false because of this, as it is difficult for computers to identify the
+    nuance of words being able to be read in multiple ways. Machine-learning would be a good solution to this, but
+    that is well beyond our ability to code.
+    """
+    wrong_syllables: int = 0  # the number of wrong syllables will be kept track of with this variable
     file_handle = open('user_poem.txt', 'r')
     for line in file_handle:
-        formatted_line = remove_punctuation(line[:-1])
-        print(formatted_line)
+        formatted_line = remove_punctuation(line[:-1]) # calls function remove_punctuation from poemformatting.py, this
+        # allows each word to be interpreted by the other functions called in this code
         total_syllables = 0
-        syllable_mask = ''
+        syllable_mask = ''  # this will record the pattern of stresses for each line, reset to a blank string each time
+        # a new line is read
         for word in formatted_line:
-            syllable_mask += identify_word_stress(word)
+            syllable_mask += identify_word_stress(word)  # calls function identify_word_stress from poemformatting.py
             total_syllables += syllable_counter(word)
-        print(syllable_mask)
-        if total_syllables != 10:
+        if total_syllables != 10:  # pentameter condition
             return False
         for index in range(1, len(syllable_mask)):
-            if index % 2 == 0:
-                if syllable_mask[index] != '1':
+            if index % 2 == 0:  # syllables at even position (2nd syllable, 4th syllable, ...)
+                if syllable_mask[index] != '1':  # stressed syllables
                     wrong_syllables += 1
-            else:
-                if syllable_mask[index] == '1':
+            else:  # syllables at odd position (1st syllable, 3rd syllable, ...)
+                if syllable_mask[index] == '1':  # unstressed syllables
                     wrong_syllables += 1
     file_handle.close()
-    print(wrong_syllables)
-    if wrong_syllables > 20:
+    if wrong_syllables > num_of_lines * 2:  # iambic condition, maximum of two incorrect syllables allowed per line
+        return False
+    else:
+        return True
+
+def sonnet() -> bool:
+    if num_of_lines != 14:
         return False
     else:
         return True
 
 
-print(iambic_pentameter())
-
+def poem_type() -> str:
+    if sonnet() == True:
+        return 'sonnet'
+    if haiku() == True:
+        return 'haiku'
+    if limerick() == True:
+        return 'limerick'
+    if iambic_pentameter() == True:
+        return 'iambic_pentameter'
+    else:
+        return 'freeverse'
 
 
