@@ -1,5 +1,5 @@
 from rhyme import two_words_rhyme
-import os
+
 
 def user_interface():
     """
@@ -7,7 +7,7 @@ def user_interface():
     that a user's poem matches the rhyming and syllable rules for a certain poetry style, providing a list of words that
     rhyme with a specific word, telling the user if two words do or do not rhyme,
     """
-    selection = int(input("Choose a function to use - (1)two words rhyme, (2)write a poem to txt file, (3)check if poem matches a poetry style... : "))
+    selection = int(input("Choose a function to use (1: Two words rhyming, 2:..."))
     # Two words rhyming function
     if selection == 1:
         word1 = str(input("Enter 1st word:"))
@@ -19,23 +19,13 @@ def user_interface():
         for current_line in range(num_of_lines):  # iterates through the loop for however many lines are in the user's poem
             line = input(f"Write line {current_line + 1}: ")  # asks the user to write whatever the current line of the poem is and assigns it to line
             user_poem_file.write(line + "\n")  # writes the line the user just wrote to the user_poem_file
-        user_poem_file.close()
+
     if selection == 3:
-        try:
-            import poetrystyles
-            path = "/homes/skeim/PycharmProjects/cs105finalpoetry2/user_poem.txt"
-            if os.path.exists(path):
-                style_to_check = input("Type a number to check if your poem matches a specific style - (1) Haiku, (2) Limerick: ")
-                if style_to_check == "1":
-                    print(poetrystyles.haiku())
-                elif style_to_check == "2":
-                    print(poetrystyles.limerick())
-        except FileNotFoundError:
-            print("A file containing poetry does not exist. Please select option 2 and write your poem.")
-            user_interface()
-
-
-
+        user_poem_file = open("user_poem.txt","w")
+        num_of_lines = int(input("How many lines does your poem have: "))
+        for current_line in range(num_of_lines):
+            total_syl=0
+            for i in current_line:
 
 
 if __name__ == '__main__':
