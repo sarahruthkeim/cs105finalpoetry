@@ -109,7 +109,13 @@ def sonnet() -> bool:
     if num_of_lines != 14:
         return False
     else:
-        return True
+        file_handle = open('user_poem.txt', 'r')
+        line_tracker = 0
+        for line in file_handle:
+            line_tracker += 1
+            if line_tracker % 4 == 0:
+
+            if line_tracker == 14:
 
 
 def poem_type() -> str:
