@@ -114,9 +114,9 @@ def sonnet() -> bool:
         for line in file_handle:
             line_tracker += 1
             if line_tracker % 4 == 0:
-
+                return True
             if line_tracker == 14:
-
+                return True
 
 def poem_type() -> str:
     if sonnet() == True:
