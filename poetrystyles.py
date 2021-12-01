@@ -1,5 +1,5 @@
 from rhyme import two_words_rhyme
-from syllablecounter import syllable_counter
+from syllablecounter import *
 from poemformatting import *
 
 num_of_lines = 0  #
@@ -61,16 +61,35 @@ def limerick() -> bool:
 
 
 def iambic_pentameter() -> bool:
-    for line in user_poem_file:
+    wrong_syllables: int = 0
+    file_handle = open('user_poem.txt', 'r')
+    for line in file_handle:
         formatted_line = remove_punctuation(line[:-1])
+        print(formatted_line)
         total_syllables = 0
         syllable_mask = ''
         for word in formatted_line:
             syllable_mask += identify_word_stress(word)
-            total_syllables += syllablecounter(word)
-        if total_syllables != 10 or syllable_mask != '0101010101':  # 0101010101 = unstressed, stressed, unstressed, stressed, ...
+            total_syllables += syllable_counter(word)
+        print(syllable_mask)
+        if total_syllables != 10:
             return False
-    return True
+        for index in range(1, len(syllable_mask)):
+            if index % 2 == 0:
+                if syllable_mask[index] != '1':
+                    wrong_syllables += 1
+            else:
+                if syllable_mask[index] == '1':
+                    wrong_syllables += 1
+    file_handle.close()
+    print(wrong_syllables)
+    if wrong_syllables > 20:
+        return False
+    else:
+        return True
+
+
+print(iambic_pentameter())
 
 
 
