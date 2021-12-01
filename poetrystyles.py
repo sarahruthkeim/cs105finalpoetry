@@ -64,13 +64,14 @@ def iambic_pentameter() -> bool:
     wrong_syllables: int = 0
     file_handle = open('user_poem.txt', 'r')
     for line in file_handle:
-        print("hello")
         formatted_line = remove_punctuation(line[:-1])
+        print(formatted_line)
         total_syllables = 0
         syllable_mask = ''
         for word in formatted_line:
             syllable_mask += identify_word_stress(word)
             total_syllables += syllable_counter(word)
+        print(syllable_mask)
         if total_syllables != 10:
             return False
         for index in range(1, len(syllable_mask)):
@@ -78,7 +79,7 @@ def iambic_pentameter() -> bool:
                 if syllable_mask[index] != '1':
                     wrong_syllables += 1
             else:
-                if syllable_mask[index] != '0':
+                if syllable_mask[index] == '1':
                     wrong_syllables += 1
     file_handle.close()
     print(wrong_syllables)
@@ -88,7 +89,7 @@ def iambic_pentameter() -> bool:
         return True
 
 
-iambic_pentameter()
+print(iambic_pentameter())
 
 
 

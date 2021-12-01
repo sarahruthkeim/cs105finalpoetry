@@ -18,12 +18,13 @@ def remove_punctuation(current_line) -> list:
     :return:
     """
     #variable list of all possible punctuation found in poem
-    punctuation = [":", ";", '"', "(", ")", "!", ".", "?", "", ","]
+    punctuation = [":", ";", '"', "(", ")", "!", ".", "?", "", ",",]
 
     #for loop for each character in the punctuation list
     for char in punctuation:
         #replacing each punctuation mark found in the line with nothing
         current_line = current_line.replace(char, "")
+    current_line = current_line.replace('-', ' ')
 
     #.upper function so words in line can be compatible with words from database
     current_line = current_line.upper()
@@ -41,8 +42,12 @@ def identify_word_stress(current_word) -> str:
     syllable_string = '' # this will update as each syllable is found
     for syllable in converted_word:
         if syllable[0:2] in config.vowels:
-            if syllable[2] == '0':  # stress is 0 (unstressed)
-                syllable_string += "0"
-            else:  # stress is 1, 2, or 3 (stressed)
-                syllable_string += "1"
+            if syllable[2] == '0': # no stress
+                syllable_string += '0'
+            elif syllable[2] == '1':  # stress is 1 (stressed)
+                syllable_string += '1'
+            elif syllable[2] == '2': # secondary stress
+                syllable_string += '2'
+            else:  # tertiary stress
+                syllable_string += '3'
     return syllable_string
