@@ -105,6 +105,7 @@ def iambic_pentameter() -> bool:
     else:
         return True
 
+#split file to list of strings here using .split with \n
 def sonnet() -> bool:
     if num_of_lines != 14:
         return False
@@ -118,7 +119,8 @@ def sonnet() -> bool:
             if line_tracker == 14:
                 return True
 
-def poem_type() -> str:
+
+def poem_type(s: str) -> str:
     if sonnet() == True:
         return 'sonnet'
     if haiku() == True:
