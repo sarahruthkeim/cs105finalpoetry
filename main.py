@@ -10,8 +10,8 @@ def user_interface():
     selection = int(input("Choose a function to use (1: Two words rhyming, 2:..."))
     # Two words rhyming function
     if selection == 1:
-        word1 = str(input("Enter 1st word:"))
-        word2 = str(input("Enter 2nd word:"))
+        word1 = str(input("Enter 1st word:")).upper()
+        word2 = str(input("Enter 2nd word:")).upper()
         print(two_words_rhyme(word1, word2))  # calls the two_words_rhyme function with the two words the user gives as input which will return whether or not the two words rhyme
     if selection == 2:
         user_poem_file = open("user_poem.txt", "w")  # opens and writes a text file called user_poem.txt under the variable name user_poem_file

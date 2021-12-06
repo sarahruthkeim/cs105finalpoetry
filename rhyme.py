@@ -1,4 +1,5 @@
 import config
+import random
 
 
 def two_words_rhyme(word1: str, word2: str) -> bool:
@@ -46,22 +47,21 @@ def find_last_vowel(broken_word: list) -> str:
         raise Exception("Error. Please check that variable broken_word is of the correct type, list.")  # raises an exception and prints an error message if the preconditions are not met
 
 
-def rhyme_suggestions(word_to_rhyme: str) -> str:
+
+def rhyme_suggestion(word_to_rhyme: str) -> str:
     """
     This function takes a word and returns a list of possible words that rhyme with the given word.
 
     :param word_to_rhyme: a str, word that will be compared to other words to see if they rhyme
     :return:
     """
-    assert(word_to_rhyme, str) and (" " not in word_to_rhyme), "Make sure that the word is a string and is only one word!"  # preconditions
-    possible_rhymes = []
-    for line in config.listofwords:
-        print(line[0])
-        if two_words_rhyme(word_to_rhyme, line[0]):
-            possible_rhymes.append(line[0])
-    return "\n".join(possible_rhymes)
+    assert(word_to_rhyme, str) and (" " not in word_to_rhyme), "Make sure that the word is a string and is only one word!"  # preconditionsx
+    index = random.randint(0, len(config.listofwords))
+    for element in config.listofwords[index::]:
+        if two_words_rhyme(element[0], word_to_rhyme) and element[0] != word_to_rhyme and element[0] not in config.possible_rhymes:
+            config.possible_rhymes.append(element[0])
+            return element[0]
 
-#print(rhyme_suggestions("cat"))
 
 def convert_word(word: str) -> list:
     broken_word: list = []
@@ -88,23 +88,7 @@ def perfect_vowel(word1: str, word2: str) -> bool:
 #print(perfect_vowel("YELLOW", "AMERICA"))
 
 
-def list_of_rhymes() -> None:
-    file_handle = open('list_of_rhymes.txt', 'w')
-    rhymes = []
-    for element in config.listofwords[0:500]:
-        if len(rhymes) == 0:
-            rhymes.append([element[0]])
-        else:
-            for rhyme_list in rhymes:
-                if two_words_rhyme(element[0], rhyme_list[0]):
-                    rhyme_list.append(element[0])
-                    break
-            rhymes.append([element[0]])
-    for list in rhymes:
-        for element in list:
-            file_handle.write(element + ", ")
-        file_handle.write("\n")
-    file_handle.close()
+
 
 
 
