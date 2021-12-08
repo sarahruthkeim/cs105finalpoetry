@@ -1,4 +1,5 @@
 from rhyme import two_words_rhyme
+from rhyme import find_last_vowel
 from syllablecounter import *
 from poemformatting import *
 
@@ -132,6 +133,26 @@ def sonnet() -> bool:
     file_handle.close()
     return True
 
+def identify_rhyme_scheme() -> str:
+    file_handle = open('user_poem.txt', 'r')
+    alphabet_letters = 'ABCDEFGHIJKLMNOPQRZTUVWXYZ'
+    rhyme_list = []
+    for line in file_handle:
+        current_line = remove_punctuation(line[:-1])
+        current_word = convert_word(current_line[-1])
+        rhyme_list += [find_last_vowel(current_word)]
+    rhyme_pattern = ['0'] * len(rhyme_list)
+    for i in range(len(rhyme_list)):
+        for j in range(i, len(rhyme_list)):
+            if rhyme_list[i] == rhyme_list[j]:
+                rhyme_pattern[i] = alphabet_letters[j]
+    file_handle.close()
+    final_pattern = ''
+    for element in rhyme_pattern:
+        final_pattern += element
+    return final_pattern
+
+
 def poem_type() -> str:
     if sonnet() == True and iambic_pentameter() == True:
         return 'english sonnet'
@@ -145,3 +166,4 @@ def poem_type() -> str:
         return 'limerick'
     else:
         return 'freeverse'
+
