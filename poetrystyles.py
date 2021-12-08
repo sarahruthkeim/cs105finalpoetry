@@ -105,31 +105,43 @@ def iambic_pentameter() -> bool:
     else:
         return True
 
-#split file to list of strings here using .split with \n
 def sonnet() -> bool:
     if num_of_lines != 14:
         return False
     else:
         file_handle = open('user_poem.txt', 'r')
         line_tracker = 0
+        formatted_line_list = []
         for line in file_handle:
+            formatted_line_list += [remove_punctuation(line[:-1])]
             line_tracker += 1
             if line_tracker % 4 == 0:
-                return True
+                line1_word = formatted_line_list[line_tracker - 4][-1]
+                line2_word = formatted_line_list[line_tracker - 3][-1]
+                line3_word = formatted_line_list[line_tracker - 2][-1]
+                line4_word = formatted_line_list[line_tracker - 1][-1]
+                if two_words_rhyme(line1_word, line3_word) != True:
+                    return False
+                if two_words_rhyme(line2_word, line4_word) != True:
+                    return False
             if line_tracker == 14:
-                return True
+                line13_word = formatted_line_list[12][-1]
+                line14_word = formatted_line_list[13][-1]
+                if two_words_rhyme(line13_word, line14_word) != True:
+                    return False
+    file_handle.close()
+    return True
 
-
-def poem_type(s: str) -> str:
-    if sonnet() == True:
+def poem_type() -> str:
+    if sonnet() == True and iambic_pentameter() == True:
+        return 'english sonnet'
+    elif sonnet() == True:
         return 'sonnet'
-    if haiku() == True:
-        return 'haiku'
-    if limerick() == True:
-        return 'limerick'
-    if iambic_pentameter() == True:
+    elif iambic_pentameter() == True:
         return 'iambic_pentameter'
+    elif haiku() == True:
+        return 'haiku'
+    elif limerick() == True:
+        return 'limerick'
     else:
         return 'freeverse'
-
-

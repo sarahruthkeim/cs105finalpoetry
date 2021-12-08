@@ -24,7 +24,7 @@ def remove_punctuation(current_line) -> list:
     for char in punctuation:
         #replacing each punctuation mark found in the line with nothing
         current_line = current_line.replace(char, "")
-    current_line = current_line.replace('-', ' ')
+    current_line = current_line.replace('-', '')
 
     #.upper function so words in line can be compatible with words from database
     current_line = current_line.upper()
