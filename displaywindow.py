@@ -40,6 +40,7 @@ def SyllableCounter():
     Button(newWindow, text="Syllable Count", command=finalcount).grid(row=1, column=1)
 
 
+
 window = tk.Tk()
 window.title("Poem Analyzer")
 
