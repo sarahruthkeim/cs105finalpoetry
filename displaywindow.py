@@ -14,6 +14,7 @@ def openFiles():
     filepath=tk.filedialog.askopenfilename(defaultextension="txt", filetypes=[("Text files","*.txt*")],)
     with open(filepath, "r") as input_file:
         text=input_file.read()
+        txt_edit.delete("1.0", "end")
         txt_edit.insert(tk.END, text)
 
 def StyleIndentifier():
@@ -24,7 +25,7 @@ def StyleIndentifier():
         newWindow=Toplevel(window)
         newWindow.title("Poem Style")
         newWindow.geometry("200x100")
-        Label(newWindow, text=poem_type(text)).pack()
+        Label(newWindow, text=poem_type()).pack()
 
 def SyllableCounter():
     newWindow = Toplevel(window)
@@ -45,6 +46,7 @@ window = tk.Tk()
 window.title("Poem Analyzer")
 
 txt_edit = tk.Text(window)
+txt_edit.insert(END, "Save file as 'user_poem'")
 fr_buttons = tk.Frame(window, relief=tk.RAISED)
 btn_save = tk.Button(fr_buttons, text="Save As...", command=saveFiles)
 btn_open = tk.Button(fr_buttons, text="Open", command=openFiles)

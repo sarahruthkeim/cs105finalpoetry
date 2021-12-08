@@ -18,6 +18,7 @@ def haiku() -> bool:
     """
     if num_of_lines == 3:  # preconditions (checks that the poem has 3 lines as a haiku should)
         line_count = 1  # instantiates variable line_count as int 1
+        total_syllables=0
         for line in user_poem_file:  # iterates through every line in user_poem_file
             cleaned_line = remove_punctuation(line)
             for word in cleaned_line:  # iterates through every word in the cleaned_line list
