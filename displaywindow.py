@@ -2,7 +2,9 @@ import tkinter as tk
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename
 from poetrystyles import poem_type
+from poetrystyles import identify_rhyme_scheme
 from syllablecounter import syllable_counter
+from rhyme import rhyme_suggestion
 
 def saveFiles():
     filepath = asksaveasfilename(defaultextension="txt", filetypes=[("Text Files", "*.txt")],)
@@ -36,9 +38,23 @@ def SyllableCounter():
     userInput.grid(row=0, columnspan=3, padx=5, pady=10)
     wordinput=str(userInput)
     def finalcount():
+        syllables=str(syllable_counter(wordinput))
         userInput.delete(0, "end")
-        userInput.insert(0, str(syllable_counter(wordinput)))
+        userInput.insert(0, syllables)
     Button(newWindow, text="Syllable Count", command=finalcount).grid(row=1, column=1)
+
+def RhymeSuggestion():
+    newWindow = Toplevel(window)
+    newWindow.title("Rhyme Suggester")
+    newWindow.geometry("350x100")
+    userInput = Entry(newWindow, width=40, justify=CENTER)
+    userInput.insert(END, "Enter a word")
+    userInput.grid(row=0, columnspan=3, padx=5, pady=10)
+    wordinput = str(userInput)
+    def suggester():
+        newnewWindow = Toplevel(window)
+        Label(newnewWindow, text=()).pack()
+
 
 
 

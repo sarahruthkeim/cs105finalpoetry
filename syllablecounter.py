@@ -15,7 +15,7 @@ def syllable_counter(words:str)-> int:
     #return syllablecount
     #print(syllablecount)
 
-
+    words.upper()
     for index in range(len(listofwords)):
         if listofwords[index][0] == words:
             for i in listofwords[index]:
