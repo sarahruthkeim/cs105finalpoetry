@@ -1,6 +1,11 @@
 import config
 
 def convert_word(word: str) -> list:
+    """
+
+    :param word: word that is in the dictionary
+    :return: Converts a word into a list of syllables that can be interpreted by other functions
+    """
     brokenword: list = []
     tracking = 0
     for index in range(len(config.listofwords)):
@@ -12,10 +17,11 @@ def convert_word(word: str) -> list:
     else:
         return brokenword
 
-def remove_punctuation(current_line) -> list:
+def remove_punctuation(current_line: str) -> list:
     """
-
-    :return:
+    :param current_line: current line of the poem being read, type is string
+    :return: Removes punctuation from a provided line so that it can be interpreted by other functions.
+    The line is also converted into a list of upper-case words.
     """
     #variable list of all possible punctuation found in poem
     punctuation = [":", ";", '"', "(", ")", "!", ".", "?", "", ",",]
@@ -32,11 +38,12 @@ def remove_punctuation(current_line) -> list:
     return ordered_word_list
 
 
-def identify_word_stress(current_word) -> str:
+def identify_word_stress(current_word: str) -> str:
     """
 
-    :param current_line:
-    :return: 1 for stressed, 0 for unstressed
+    :param current_word: current line of the poem being read, type is string
+    :return: Identifies the stress of a word by looking at each vowel in the word and creating a string that records the
+    stress of the word as 0 (unstressed), 1 (primary stress), 2 (secondary stress), or 3 (tertiary stress)
     """
     converted_word = convert_word(current_word)
     syllable_string = '' # this will update as each syllable is found
