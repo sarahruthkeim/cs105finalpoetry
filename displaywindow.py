@@ -62,6 +62,7 @@ txt_edit.grid(row=0, column=1, sticky="nsew")
 
 window.mainloop()
 
+
 #h = open("user_poem.txt", "r")
 #fh
 #s = fh.read()
