@@ -2,7 +2,7 @@ from config import vowels
 from config import listofwords
 
 
-def syllable_counter(words:str)-> int:
+def syllable_counter(words: str)-> int:
     """
     This function receives a word and counts the syllables in that word
     :param words: The inputted word
@@ -33,5 +33,3 @@ syllable_counter('preacher')
 syllable_counter('antelope')
 
 print(syllable_counter('SPARKLE'))
-
-#hello

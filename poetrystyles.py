@@ -108,31 +108,41 @@ def iambic_pentameter() -> bool:
         return True
 
 def sonnet() -> bool:
-    if num_of_lines != 14:
+    """
+
+    :return: checks to see if user's poem is a sonnet. Returns True if it is and False if it is not. A sonnet has the
+    rhyme scheme ABABCDCDEFEFGG, this is what will be used to determine if it is a sonnet or not.
+    """
+    if num_of_lines != 14:  # poem must have 14 lines for it to possibly be a sonnet.
         return False
     else:
         file_handle = open('user_poem.txt', 'r')
-        line_tracker = 0
-        formatted_line_list = []
+        line_tracker = 0  # variable keeps track of the line being checked
+        formatted_line_list = []  # variable is a list of lists. First list is each line, lists within this list are the
+        # words of each line.
         for line in file_handle:
-            formatted_line_list += [remove_punctuation(line[:-1])]
+            formatted_line_list += [remove_punctuation(line[:-1])]  # remove_punctuation called from poemformatting.py.
+            # A description of what this function does is written there.
             line_tracker += 1
-            if line_tracker % 4 == 0:
-                line1_word = formatted_line_list[line_tracker - 4][-1]
+            if line_tracker % 4 == 0:  # sonnet rhyme scheme repeats every 4 lines, so this code checks the rhyme scheme
+                # every 4 lines.
+                line1_word = formatted_line_list[line_tracker - 4][-1]  # each variable represents the last word of each
+                # line. These will be used to check if two lines rhyme.
                 line2_word = formatted_line_list[line_tracker - 3][-1]
                 line3_word = formatted_line_list[line_tracker - 2][-1]
                 line4_word = formatted_line_list[line_tracker - 1][-1]
-                if two_words_rhyme(line1_word, line3_word) != True:
+                if two_words_rhyme(line1_word, line3_word) != True:  # if line 1 and 3 do not rhyme, the rhyme scheme is
+                    # broken, so False is returned and the function stops.
                     return False
-                if two_words_rhyme(line2_word, line4_word) != True:
+                if two_words_rhyme(line2_word, line4_word) != True:  # same thing is done for lines 2 and 4.
                     return False
-            if line_tracker == 14:
+            if line_tracker == 14:  # lines 13 and 14 have a unique rhyme scheme "GG", so new code is required.
                 line13_word = formatted_line_list[12][-1]
                 line14_word = formatted_line_list[13][-1]
                 if two_words_rhyme(line13_word, line14_word) != True:
                     return False
     file_handle.close()
-    return True
+    return True  # if the code goes through the entire poem without finding an error, True is returned.
 
 def identify_rhyme_scheme() -> str:
     file_handle = open('user_poem.txt', 'r')
@@ -168,3 +178,4 @@ def poem_type() -> str:
     else:
         return 'freeverse'
 
+print(poem_type())

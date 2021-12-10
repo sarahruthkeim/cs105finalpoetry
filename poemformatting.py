@@ -8,12 +8,13 @@ def convert_word(word: str) -> list:
     """
     brokenword: list = []
     tracking = 0
+    word = word.upper()
     for index in range(len(config.listofwords)):
         if config.listofwords[index][0] == word:
             tracking += 1
             brokenword = config.listofwords[index]
     if tracking == 0:
-        return [0]
+        raise Exception
     else:
         return brokenword
 
@@ -45,6 +46,9 @@ def identify_word_stress(current_word: str) -> str:
     :return: Identifies the stress of a word by looking at each vowel in the word and creating a string that records the
     stress of the word as 0 (unstressed), 1 (primary stress), 2 (secondary stress), or 3 (tertiary stress)
     """
+    current_word = current_word.upper()
+    converted_word = convert_word(current_word)
+    syllable_string = '' # this will update as each syllable is found
     converted_word = convert_word(current_word)
     syllable_string = '' # this will update as each syllable is found
     for syllable in converted_word:
@@ -59,4 +63,8 @@ def identify_word_stress(current_word: str) -> str:
                 syllable_string += '3'
     return syllable_string
 
+
+print(identify_word_stress('Here'))
 # hello
+
+print(convert_word('hello'))
