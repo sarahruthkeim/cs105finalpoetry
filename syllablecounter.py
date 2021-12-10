@@ -9,6 +9,9 @@ def syllable_counter(words: str) -> int:
     :param words: The inputted word
     :return: The # of syllables in that word
     """
+
+    words=words.upper()
+
     # Creating a syllable count for the given word
     syllablecount = 0
 
