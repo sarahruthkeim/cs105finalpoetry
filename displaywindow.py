@@ -29,6 +29,7 @@ def StyleIndentifier():
         newWindow.geometry("200x100")
         Label(newWindow, text=poem_type()).pack()
 
+
 def SyllableCounter():
     newWindow = Toplevel(window)
     newWindow.title("Syllable Counter")
