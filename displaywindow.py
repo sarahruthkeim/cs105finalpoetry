@@ -2,7 +2,9 @@ import tkinter as tk
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename
 from poetrystyles import poem_type
+from poetrystyles import identify_rhyme_scheme
 from syllablecounter import syllable_counter
+from rhyme import rhyme_suggestion
 
 def saveFiles():
     filepath = asksaveasfilename(defaultextension="txt", filetypes=[("Text Files", "*.txt")],)
@@ -34,11 +36,27 @@ def SyllableCounter():
     userInput = Entry(newWindow, width=40, justify=CENTER)
     userInput.insert(END, "Enter a word")
     userInput.grid(row=0, columnspan=3, padx=5, pady=10)
-    wordinput=str(userInput)
+    # wordinput=str(userInput.get())
     def finalcount():
+        syllables=str(syllable_counter(userInput.get()))
         userInput.delete(0, "end")
-        userInput.insert(0, str(syllable_counter(wordinput)))
+        userInput.insert(0, syllables)
     Button(newWindow, text="Syllable Count", command=finalcount).grid(row=1, column=1)
+
+def RhymeSuggestion():
+    newWindow = Toplevel(window)
+    newWindow.title("Rhyme Suggester")
+    newWindow.geometry("350x100")
+    userInput = Entry(newWindow, width=40, justify=CENTER)
+    userInput.insert(END, "Enter a word")
+    userInput.grid(row=0, columnspan=3, padx=5, pady=10)
+    #wordinput = str(userInput)
+    def suggester():
+        newnewWindow = Toplevel(window)
+        Label(newnewWindow, text=(rhyme_suggestion(userInput.get()))).pack()
+    Button(newWindow, text="Find a rhyming word", command=suggester).grid(row=1, column=1)
+
+
 
 
 
@@ -52,11 +70,15 @@ btn_save = tk.Button(fr_buttons, text="Save As...", command=saveFiles)
 btn_open = tk.Button(fr_buttons, text="Open", command=openFiles)
 btn_style = tk.Button(fr_buttons, text="Poem Style", command=StyleIndentifier)
 btn_syllable = tk.Button(fr_buttons, text="Syllable Counter", command=SyllableCounter)
+btn_rhyme = tk.Button(fr_buttons, text="Rhyming Words Finder", command=RhymeSuggestion)
+
 
 btn_save.grid(row=1, column=0, sticky="ew", padx=5)
 btn_open.grid(row=0, column=0, sticky="ew", padx=5)
 btn_style.grid(row=2, column=0, sticky="ew", padx=5)
 btn_syllable.grid(row=3, column=0, sticky="ew", padx=5)
+btn_rhyme.grid(row=4, column=0, sticky="ew", padx=5)
+
 
 fr_buttons.grid(row=0, column=0, sticky="ns")
 txt_edit.grid(row=0, column=1, sticky="nsew")
