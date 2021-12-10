@@ -65,6 +65,6 @@ def identify_word_stress(current_word: str) -> str:
 
 
 print(identify_word_stress('Here'))
-# hello
+# hello #
 
 print(convert_word('hello'))
