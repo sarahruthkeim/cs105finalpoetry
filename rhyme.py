@@ -65,12 +65,14 @@ def rhyme_suggestion(word_to_rhyme: str) -> str:
     :return: str, a word that rhymes with word_to_rhyme, found in the CMU dictionary
     """
     assert (word_to_rhyme, str) and (" " not in word_to_rhyme), "Make sure that the word is a string and is only one word!"  # preconditions
+    word_to_rhyme = word_to_rhyme.upper()
     index = random.randint(0, len(config.listofwords))
     for element in config.listofwords[index::]:
         if two_words_rhyme(element[0], word_to_rhyme) and element[0] != word_to_rhyme and element[0] not in config.possible_rhymes:
             config.possible_rhymes.append(element[0])
             return element[0]
 
+rhyme_suggestion("rat")
 
 def convert_word(word: str) -> list:
     """
