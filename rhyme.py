@@ -72,7 +72,6 @@ def rhyme_suggestion(word_to_rhyme: str) -> str:
             config.possible_rhymes.append(element[0])
             return element[0]
 
-rhyme_suggestion("rat")
 
 def convert_word(word: str) -> list:
     """

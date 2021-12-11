@@ -70,7 +70,6 @@ def limerick() -> bool:
             if two_words_rhyme(to_check_ryhme[1][-1], to_check_ryhme[4][-1]):  # checks that the last word in lines 2 and 5 rhyme (1 and 5 will rhyme if 1 and 2 do)
                 if two_words_rhyme(to_check_ryhme[2][-1], to_check_ryhme[3][-1]):  # checks that the last word in lines 3 and 4 rhyme
                     return True  # the correct rhyming scheme of AABBA has been met, returns True
-        user_poem_file.close()
         return False
     else:
         return False  # returns False if preconditions are not met
