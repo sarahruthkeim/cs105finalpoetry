@@ -8,7 +8,6 @@ user_poem_file = open("user_poem.txt", "r")  #
 for line in user_poem_file:  #
     num_of_lines += 1  #
 
-
 def haiku() -> bool:
     """
     This function checks if a poem is a haiku by looking at the text in user_poem_file and returns True if each line
