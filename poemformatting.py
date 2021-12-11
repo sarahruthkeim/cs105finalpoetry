@@ -64,7 +64,5 @@ def identify_word_stress(current_word: str) -> str:
     return syllable_string
 
 
-print(identify_word_stress('Here'))
 # hello #
 
-print(convert_word('hello'))
