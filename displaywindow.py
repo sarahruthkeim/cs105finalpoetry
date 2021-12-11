@@ -50,8 +50,8 @@ def StyleIndentifier():
         #opening a new display window that displays the output of poem_type on the user_poem file
         newWindow=Toplevel(window)
         newWindow.title("Poem Style")
-        newWindow.geometry("200x100")
-        Label(newWindow, text=poem_type()).pack()
+        newWindow.geometry("700x200")
+        Label(newWindow, text=poem_type(), font=('Arial',60)).pack()
 
 def SyllableCounter():
     """
@@ -110,10 +110,10 @@ def RhymeStyleIdentifier():
         #displaying new window
         newWindow = Toplevel(window)
         newWindow.title("Rhyme Style")
-        newWindow.geometry("200x100")
+        newWindow.geometry("700x200")
 
         #inserting return of indentify_rhyme_scheme in the window
-        Label(newWindow, text=identify_rhyme_scheme()).pack()
+        Label(newWindow, text=identify_rhyme_scheme(), font=('Arial', 60)).pack()
 
 
 #creating display window and title

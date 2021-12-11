@@ -202,14 +202,10 @@ def poem_type() -> str:
     elif sonnet() == True:
         return 'sonnet'
     elif iambic_pentameter() == True:
-        return 'iambic_pentameter'
+        return 'iambic pentameter'
     elif haiku() == True:
         return 'haiku'
     elif limerick() == True:
         return 'limerick'
     else:
         return 'freeverse'
-
-print(iambic_pentameter())
-
-#
