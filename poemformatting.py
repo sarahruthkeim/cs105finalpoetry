@@ -14,6 +14,7 @@ def convert_word(word: str) -> list:
             tracking = 1  # word is found, so tracking is changed to 1
             brokenword = config.listofwords[index]
     if tracking == 0:  # if the word is not found, it is not in the dictionary, so the precondition is not met.
+        print(f'Error: poem has a word that is not in the dictionary. The missing word is {word}')
         raise Exception
     else:
         return brokenword

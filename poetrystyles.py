@@ -107,15 +107,17 @@ def iambic_pentameter() -> bool:
             total_syllables += syllable_counter(word)
         if total_syllables != 10:  # pentameter condition
             return False
-        for index in range(1, len(syllable_mask)):
-            if index % 2 == 0:  # syllables at even position (2nd syllable, 4th syllable, ...)
+        for index in range(len(syllable_mask)):
+            if index % 2 != 0:  # syllables at even position (2nd syllable, 4th syllable, ...)
                 if syllable_mask[index] != '1':  # stressed syllables
                     wrong_syllables += 1
             else:  # syllables at odd position (1st syllable, 3rd syllable, ...)
                 if syllable_mask[index] == '1':  # unstressed syllables
                     wrong_syllables += 1
+        print(syllable_mask)
+        print(f'{wrong_syllables} wrong syllables identified')
     file_handle.close()
-    if wrong_syllables > num_of_lines * 2:  # iambic condition, maximum of two incorrect syllables allowed per line
+    if wrong_syllables > num_of_lines * 3:  # iambic condition, maximum of three incorrect syllables allowed per line
         return False
     else:
         return True
@@ -204,5 +206,6 @@ def poem_type() -> str:
     else:
         return 'freeverse'
 
+print(iambic_pentameter())
 
 #
