@@ -151,28 +151,41 @@ def sonnet() -> bool:
     return True  # if the code goes through the entire poem without finding an error, True is returned.
 
 def identify_rhyme_scheme() -> str:
+    """
+
+    :return: records the rhyme scheme of the poem as a string. Normally, the first line is marked as "A", and all
+    subsequent lines that rhyme with are also marked as A. The same is done for the next unique rhyme, recording it as
+    "B". However, in this code the alphabet letter is attached to the position of the last instance of a rhyme. For
+    example, the sonnet rhyme scheme should normally be "ABABCDCDEFEFGG", but in this case it would be "CDCDGHGHKLKLNN".
+    """
     file_handle = open('user_poem.txt', 'r')
     alphabet_letters = 'ABCDEFGHIJKLMNOPQRZTUVWXYZ'
-    rhyme_list = []
+    rhyme_list = []  # this list will be appended for each line, storing the last syllable of each line.
     for line in file_handle:
         current_line = remove_punctuation(line[:-1])
         current_word = convert_word(current_line[-1])
         rhyme_list += [find_last_vowel(current_word)]
-    rhyme_pattern = ['0'] * len(rhyme_list)
+    rhyme_pattern = ['0'] * len(rhyme_list)  # blank list the size of the number of lines in the poem
     for i in range(len(rhyme_list)):
         for j in range(i, len(rhyme_list)):
-            if rhyme_list[i] == rhyme_list[j]:
-                rhyme_pattern[i] = alphabet_letters[j]
+            if rhyme_list[i] == rhyme_list[j]:  # if two words have the same rhyme...
+                rhyme_pattern[i] = alphabet_letters[j]  # they are recorded with the same alphabet letter.
     file_handle.close()
     final_pattern = ''
     for element in rhyme_pattern:
-        final_pattern += element
+        final_pattern += element  # list is converted back into a string.
     return final_pattern
 
 
 def poem_type() -> str:
+    """
+
+    :return: this function checks the user's poem to see if it matches the format of any of the rhyme schemes definied.
+    If none of these rhyme schemes are identified, the poem is declared to be "freeverse".
+    """
     if sonnet() == True and iambic_pentameter() == True:
-        return 'english sonnet'
+        return 'english sonnet'  # in an English sonnet, the poem must fit both the sonnet rhyme scheme and the iambic
+        # pentameter meter.
     elif sonnet() == True:
         return 'sonnet'
     elif iambic_pentameter() == True:
@@ -184,6 +197,5 @@ def poem_type() -> str:
     else:
         return 'freeverse'
 
-print(poem_type())
 
 #
