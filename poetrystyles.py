@@ -3,12 +3,12 @@ from rhyme import find_last_vowel
 from syllablecounter import *
 from poemformatting import *
 
-num_of_lines = 0  #
+num_of_lines = 0
 list_of_lines = []
-user_poem_file = open("user_poem.txt", "r")  #
-for line in user_poem_file:  #
+user_poem_file = open("user_poem.txt", "r")
+for line in user_poem_file:
     list_of_lines.append(line)
-    num_of_lines += 1  #
+    num_of_lines += 1
 
 
 def haiku() -> bool:
