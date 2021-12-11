@@ -4,9 +4,12 @@ from syllablecounter import *
 from poemformatting import *
 
 num_of_lines = 0  #
+list_of_lines = []
 user_poem_file = open("user_poem.txt", "r")  #
 for line in user_poem_file:  #
+    list_of_lines.append(line)
     num_of_lines += 1  #
+
 
 def haiku() -> bool:
     """
@@ -41,25 +44,37 @@ def haiku() -> bool:
 def limerick() -> bool:
     """
     This function checks if a poem is a limerick by looking at the text in user_poem_file and returns True if they fit
-    the rhyming scheme for a limerick, AABBA, or False if they do not.
+    the rhyming scheme for a limerick, AABBA, and the correct syllable structure, or False if they do not.
 
-    :return: bool, True if rhyming scheme is met, False if it is not
+    :return: bool, True if rhyming scheme and syllable structure are met, False if it does not
     """
-    if num_of_lines == 5:  # preconditions (checks that the poem has 3 lines as a haiku should)
-        line_count = 1
-        list_of_lines = []
-        for line in user_poem_file:  # iterates through every line in user_poem_file
-            words_in_line = line.split(" ")  # splits line into elements by " ", these elements become the list words_in_line
-            list_of_lines.append(words_in_line)  # adds the list, words_in_line to another list, list_of_lines (list of lists)
-        if two_words_rhyme(list_of_lines[0][-1], list_of_lines[1][-1]):  # checks that the last word in lines 1 and 2 rhyme
-            if two_words_rhyme(list_of_lines[1][-1], list_of_lines[4][-1]):  # checks that the last word in lines 2 and 5 rhyme (1 and 5 will rhyme if 1 and 2 do)
-                if two_words_rhyme(list_of_lines[2][-1], list_of_lines[3][-1]):  # checks that the last word in lines 3 and 4 rhyme
-                    user_poem_file.close()
+    if num_of_lines == 5:  # preconditions (checks that the poem has 5 lines as a limerick should)
+        line_number = 1  # initializing line_number as the first line
+        broken_line = []  # a list that will hold the words of a given line in a list
+        to_check_ryhme = []  # a list of lists which are the words of a line
+        for line in list_of_lines:  # iterates through every line in user_poem_file
+            syllable_total = 0  # initializing total syllables in a line to zero
+            line = line.strip()  # removes /n from line
+            broken_line = remove_punctuation(line)  # removes all punctuation from line so syllable counter will work correctly
+            to_check_ryhme.append(broken_line)  # adds the cleaned line, in its broken word form as a list to another list, to_check_rhyme
+            for word in broken_line:  # iterates through every word in a line
+                syllable_total = syllable_total + syllable_counter(word)  # counts the number of syllables for every word and adds it to a line total
+            if line_number == 1 or line_number == 2 or line_number == 5:   # if it is line, 1, 2, or 5, sees if total sylables are between 7 and 10
+                if not 7 <= syllable_total <= 10:
+                    return False  # if it does not meet the syllable requirements, automatically returns False
+            elif line_number == 3 or line_number == 4:  # if it is line 3 or 4, sees if total syllables are between 5 and 7
+                if not 5 <= syllable_total <= 7:
+                    return False  # if it does not meet the syllable requirements, automatically returns False
+            line_number += 1  # adds one to the line number, goes to the next line
+        if two_words_rhyme(to_check_ryhme[0][-1], to_check_ryhme[1][-1]):  # checks that the last word in lines 1 and 2 rhyme
+            if two_words_rhyme(to_check_ryhme[1][-1], to_check_ryhme[4][-1]):  # checks that the last word in lines 2 and 5 rhyme (1 and 5 will rhyme if 1 and 2 do)
+                if two_words_rhyme(to_check_ryhme[2][-1], to_check_ryhme[3][-1]):  # checks that the last word in lines 3 and 4 rhyme
+                    user_poem_file.close()  # closes the file
                     return True  # the correct rhyming scheme of AABBA has been met, returns True
         user_poem_file.close()
         return False
     else:
-        return False
+        return False  # returns False if preconditions are not met
 
 
 def iambic_pentameter() -> bool:
@@ -191,6 +206,7 @@ def poem_type() -> str:
     else:
         return 'freeverse'
 
-print(poem_type())
+#print(poem_type())
+print(limerick())
 
 #
