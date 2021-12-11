@@ -21,7 +21,7 @@ def haiku() -> bool:
     """
     if num_of_lines == 3:  # preconditions (checks that the poem has 3 lines as a haiku should)
         line_count = 1  # instantiates variable line_count as int 1
-        total_syllables=0
+        total_syllables = 0
         for line in user_poem_file:  # iterates through every line in user_poem_file
             cleaned_line = remove_punctuation(line)
             for word in cleaned_line:  # iterates through every word in the cleaned_line list
@@ -69,9 +69,7 @@ def limerick() -> bool:
         if two_words_rhyme(to_check_ryhme[0][-1], to_check_ryhme[1][-1]):  # checks that the last word in lines 1 and 2 rhyme
             if two_words_rhyme(to_check_ryhme[1][-1], to_check_ryhme[4][-1]):  # checks that the last word in lines 2 and 5 rhyme (1 and 5 will rhyme if 1 and 2 do)
                 if two_words_rhyme(to_check_ryhme[2][-1], to_check_ryhme[3][-1]):  # checks that the last word in lines 3 and 4 rhyme
-                    user_poem_file.close()  # closes the file
                     return True  # the correct rhyming scheme of AABBA has been met, returns True
-        user_poem_file.close()
         return False
     else:
         return False  # returns False if preconditions are not met
@@ -207,6 +205,5 @@ def poem_type() -> str:
         return 'freeverse'
 
 #print(poem_type())
-print(limerick())
 
 #
