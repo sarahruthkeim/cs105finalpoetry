@@ -204,6 +204,6 @@ def poem_type() -> str:
     else:
         return 'freeverse'
 
-#print(poem_type())
+print(poem_type())
 
 #
