@@ -22,20 +22,24 @@ def haiku() -> bool:
     if num_of_lines == 3:  # preconditions (checks that the poem has 3 lines as a haiku should)
         line_count = 1  # instantiates variable line_count as int 1
         total_syllables=0
-        for line in user_poem_file:  # iterates through every line in user_poem_file
-            cleaned_line = remove_punctuation(line)
+        file_handle=open('user_poem.txt', 'r')
+        lines = file_handle.readlines()
+        for line in lines:
+            print(line)
+        for line in file_handle:  # iterates through every line in user_poem_file
+            cleaned_line = remove_punctuation(line[:-1])
             for word in cleaned_line:  # iterates through every word in the cleaned_line list
                 total_syllables = total_syllables + syllable_counter(word)  # adds the number of syllables for the current word to the total number of syllables in the line
             if line_count == 1 or line_count == 3:  # checks if the current line is the first or the third line
                 if total_syllables != 5:  # checks if the total_syllables for this line are not five
-                    user_poem_file.close()
+                    file_handle.close()
                     return False  # returns false if total_syllables is not five becuase a rule for a haiku have not been met
             elif line_count == 2:  # checks if the current line is the second line
                 if total_syllables != 7:  # checks if the total_syllables for this line are seven
-                    user_poem_file.close()
+                    file_handle.close()
                     return False  # returns false if total_syllables is not seven because a rule for a haiku have not been met
             line_count += 1  # adds 1 to the line count
-        user_poem_file.close()
+        file_handle.close()
         return True  # returns True because all the lines met the correct syllable counts
     else:
         return False
